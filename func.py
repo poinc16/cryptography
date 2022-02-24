@@ -43,17 +43,17 @@ def text_decrypt(text):
         if key == k:
             valid = True
     if valid == True:
-        decrypt_text = ''
+        decrypt_text = text
         for i, j in extras.encrypting_lower_alphabet.items():
             if j in text:
-                decrypt_text += text.replace(j, i)
+                decrypt_text = decrypt_text.replace(j, i)
         for i, j in extras.encrypting_upper_alphabet.items():
             if j in text:
-                decrypt_text += text.replace(j, i)
+                decrypt_text = decrypt_text.replace(j, i)
 
         for i, j in extras.encrypting_numbers.items():
             if j in text:
-                decrypt_text += text.replace(j, i)
+                decrypt_text = decrypt_text.replace(j, i)
         return decrypt_text
     else:
         print('Key inválida.')
