@@ -3,8 +3,28 @@ import extras
 import os
 
 
-def main_crypt(to_crypt):
-    pass
+def main_crypt():
+    while True:
+        print('Escolha o que você deseja fazer.')
+        for i, j in extras.what_to_do.items():
+            print(f'[{i}] : {j}')
+        choose = input('Digite aqui sua escolha: ')
+        try:
+            choose = int(choose)
+        except:
+            print('Digite um valor válido!\n')
+            continue
+        if choose > 0 and choose < 5:
+            if choose == 1:
+                return 'cfile'
+            elif choose == 2:
+                return 'dfile'
+            elif choose == 3:
+                return 'ctext'
+            elif choose == 4:
+                return 'dtext'
+            else:
+                print('Digite um valor válido!\n')
 
 
 def file_crypt():
