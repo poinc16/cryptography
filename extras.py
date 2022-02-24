@@ -82,3 +82,10 @@ encrypting_lower_alphabet = {
     'z': 'pçW3',
     'ç': '1*#4',
 }
+
+what_to_do = {
+    1: 'Criptografar um arquivo',
+    2: 'Descriptografar um arquivo',
+    3: 'Criptografar um texto',
+    4: 'Descriptografar um texto'
+}
