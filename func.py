@@ -43,7 +43,18 @@ def text_decrypt(text):
         if key == k:
             valid = True
     if valid == True:
-        pass
+        decrypt_text = ''
+        for i, j in extras.encrypting_lower_alphabet.items():
+            if j in text:
+                decrypt_text += text.replace(j, i)
+        for i, j in extras.encrypting_upper_alphabet.items():
+            if j in text:
+                decrypt_text += text.replace(j, i)
+
+        for i, j in extras.encrypting_numbers.items():
+            if j in text:
+                decrypt_text += text.replace(j, i)
+        return decrypt_text
     else:
         print('Key inválida.')
         return
@@ -54,11 +65,11 @@ def make_file_crypt(text):
     rand_numb = randint(0, len_keys)
     key_to_decrypt = extras.keys[rand_numb]
 
-    with open('/home/matheus/Documentos/Encrypted_text.txt', 'w') as file:
+    with open('######/Encrypted_text.txt', 'w') as file:
         file.write(text + '\n')
         file.write('\n')
         file.write(
-            f'# Para descriptografar o texto, favor inserir a key(sem os colchetes): [{key_to_decrypt}] no local onde for pedido.\n')
+            f'# Para descriptografar o texto, utilize a key de dentro dos colchetes: [{key_to_decrypt}].\n')
         file.write(
             '## ATENÇÃO: CASO VOCÊ PERCA ESSA KEY, NÃO SERÁ POSSÍVEL DESCRIPTOGRAFAR O TEXTO.')
 
@@ -67,4 +78,9 @@ def make_file_crypt(text):
 
 
 def make_file_decrypt(text):
-    pass
+    with open('########/Decrypted_text.txt', 'w') as file:
+        file.write(text)
+
+    func_return = 'Texto descriptografado com sucesso! Arquivo salvo na pasta "Documentos" do computador.'
+
+    return func_return
