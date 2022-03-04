@@ -1,6 +1,5 @@
 from random import randint
 import extras
-import os
 
 
 def main_crypt():
@@ -23,8 +22,8 @@ def main_crypt():
                 return 'ctext'
             elif choose == 4:
                 return 'dtext'
-            else:
-                print('Digite um valor válido!\n')
+        else:
+            print('Digite um valor válido!\n')
 
 
 def file_crypt():
@@ -35,19 +34,31 @@ def text_crypt(text):
     crypt_list = []
     crypt_text = ''
 
-    for letter in text:
+    if len(text) == 1:
+        for letter in text:
+            for i, c in extras.encrypting_one_bit.items():
+                if letter == i:
+                    crypt_list.append(c)
+    elif len(text) == 2:
+        pass
+    elif len(text) == 3:
+        pass
+    elif len(text) == 4:
+        pass
+    else:
+        for letter in text:
 
-        for i, c in extras.encrypting_lower_alphabet.items():
-            if letter == i:
-                crypt_list.append(c)
+            for i, c in extras.encrypting_lower_alphabet.items():
+                if letter == i:
+                    crypt_list.append(c)
 
-        for i, c in extras.encrypting_numbers.items():
-            if letter == i:
-                crypt_list.append(c)
+            for i, c in extras.encrypting_numbers.items():
+                if letter == i:
+                    crypt_list.append(c)
 
-        for i, c in extras.encrypting_upper_alphabet.items():
-            if letter == i:
-                crypt_list.append(c)
+            for i, c in extras.encrypting_upper_alphabet.items():
+                if letter == i:
+                    crypt_list.append(c)
 
     for cryp in crypt_list:
         crypt_text += cryp
@@ -62,16 +73,22 @@ def text_decrypt(text):
     for k in extras.keys:
         if key == k:
             valid = True
+
     if valid == True:
         decrypt_text = text
         for i, j in extras.encrypting_lower_alphabet.items():
             if j in text:
                 decrypt_text = decrypt_text.replace(j, i)
+
         for i, j in extras.encrypting_upper_alphabet.items():
             if j in text:
                 decrypt_text = decrypt_text.replace(j, i)
 
         for i, j in extras.encrypting_numbers.items():
+            if j in text:
+                decrypt_text = decrypt_text.replace(j, i)
+
+        for i, j in extras.encrypting_one_bit.items():
             if j in text:
                 decrypt_text = decrypt_text.replace(j, i)
         return decrypt_text
