@@ -30,6 +30,10 @@ def file_crypt():
     pass
 
 
+def file_decrypt():
+    pass
+
+
 def text_crypt(text):
     crypt_list = []
     crypt_text = ''
@@ -40,11 +44,20 @@ def text_crypt(text):
                 if letter == i:
                     crypt_list.append(c)
     elif len(text) == 2:
-        pass
+        for letter in text:
+            for i, c in extras.encrypting_two_bit.items():
+                if letter == i:
+                    crypt_list.append(c)
     elif len(text) == 3:
-        pass
+        for letter in text:
+            for i, c in extras.encrypting_three_bit.items():
+                if letter == i:
+                    crypt_list.append(c)
     elif len(text) == 4:
-        pass
+        for letter in text:
+            for i, c in extras.encrypting_four_bit.items():
+                if letter == i:
+                    crypt_list.append(c)
     else:
         for letter in text:
 
@@ -91,6 +104,19 @@ def text_decrypt(text):
         for i, j in extras.encrypting_one_bit.items():
             if j in text:
                 decrypt_text = decrypt_text.replace(j, i)
+
+        for i, j in extras.encrypting_two_bit.items():
+            if j in text:
+                decrypt_text = decrypt_text.replace(j, i)
+
+        for i, j in extras.encrypting_three_bit.items():
+            if j in text:
+                decrypt_text = decrypt_text.replace(j, i)
+
+        for i, j in extras.encrypting_three_bit.items():
+            if j in text:
+                decrypt_text = decrypt_text.replace(j, i)
+
         return decrypt_text
     else:
         print('Key inválida.')
