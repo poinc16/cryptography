@@ -26,15 +26,19 @@ def main_crypt():
             print('Digite um valor válido!\n')
 
 
-def file_crypt():
-    pass
+def read_file_data(file_name):
+    with open(file_name, 'r') as file:
+        data_file = file.read()
+    return data_file
 
 
-def file_decrypt():
-    pass
+def file_write(data, file_name):
+    with open(file_name, 'w') as file:
+        file.write(data)
+    return 'Operação realizada com sucesso!'
 
 
-def text_crypt(text):
+def data_crypt(text):
     crypt_list = []
     crypt_text = ''
 
@@ -79,7 +83,7 @@ def text_crypt(text):
     return crypt_text
 
 
-def text_decrypt(text):
+def data_decrypt(text):
     valid = False
     key = input(
         'Insira aqui a key fornecida durante o processo de criptografia do texto: ')
