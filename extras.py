@@ -50,7 +50,7 @@ encrypting_numbers = {
     '.': '9*m)',
     ':': '1%4v',
     '?': '9!@6',
-    '!': '19,l'
+    '!': '19ol',
 }
 
 encrypting_lower_alphabet = {
