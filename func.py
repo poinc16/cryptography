@@ -7,8 +7,7 @@ def verify(to_valid):
         to_valid = int(to_valid)
     except:
         return 'not valid'
-    finally:
-        return 'valid'
+    return 'valid'
 
 
 def main_crypt():
@@ -24,6 +23,7 @@ def main_crypt():
             print('Digite um valor válido!\n')
             continue
         elif valid == 'valid':
+            choose = int(choose)
             if choose > 0 and choose < 5:
                 if choose == 1:
                     return 'cfile'
@@ -43,10 +43,26 @@ def read_file_data(file_name):
     return data_file
 
 
-def file_write(data, file_name):
-    with open(file_name, 'w') as file:
-        file.write(data)
-    return 'Operação realizada com sucesso!'
+def file_write(data, file_name, type):
+    if 'c' in type:
+        len_keys = len(extras.keys)
+        rand_numb = randint(0, len_keys-1)
+        key_to_decrypt = extras.keys[rand_numb]
+        with open('Key.txt', 'w') as key_file:
+            key_file.write(
+                'Utilize esta chave para descriptografar seu arquivo\n\n')
+            key_file.write(key_to_decrypt + '\n\n')
+            key_file.write(
+                '#ATENÇÃO: A perda dessa chave ocasionará na não possibilidade de descriptografia do arquivo.')
+
+    try:
+        with open(file_name, 'w') as file:
+            file.write(data)
+        return 'Operação realizada com sucesso!'
+    except BaseException as e:
+        with open('log_error.txt', 'w') as error:
+            error.write(e)
+        return 'Houve um erro ao realizar a operação!'
 
 
 def data_crypt(text):
@@ -97,7 +113,7 @@ def data_crypt(text):
 def data_decrypt(text):
     valid = False
     key = input(
-        'Insira aqui a key fornecida durante o processo de criptografia do texto: ')
+        'Insira aqui a key fornecida durante o processo de criptografia: ')
     for k in extras.keys:
         if key == k:
             valid = True
@@ -136,29 +152,3 @@ def data_decrypt(text):
     else:
         print('Key inválida.')
         return
-
-
-def make_file_crypt(text):
-    len_keys = len(extras.keys)
-    rand_numb = randint(0, len_keys)
-    key_to_decrypt = extras.keys[rand_numb]
-
-    with open('Encrypted_text.txt', 'w') as file:
-        file.write(text + '\n')
-        file.write('\n')
-        file.write(
-            f'# Para descriptografar o texto, utilize a key de dentro dos colchetes: [{key_to_decrypt}].\n')
-        file.write(
-            '## ATENÇÃO: CASO VOCÊ PERCA ESSA KEY, NÃO SERÁ POSSÍVEL DESCRIPTOGRAFAR O TEXTO.')
-
-    func_return = 'Texto criptografado salvo na pasta "Documentos" do computador.'
-    return func_return
-
-
-def make_file_decrypt(text):
-    with open('Decrypted_text.txt', 'w') as file:
-        file.write(text)
-
-    func_return = 'Texto descriptografado com sucesso! Arquivo salvo na pasta "Documentos" do computador.'
-
-    return func_return
