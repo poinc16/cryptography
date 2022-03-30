@@ -381,3 +381,14 @@ encrypting_four_bit = {
     'z': 'q3B*kn',
     'ç': 'pX_8gr',
 }
+
+encryption_mask = [
+    'DS?&%4=QH]hp]yr4~d([T&-jL_tYjKQ',
+    '?vX>/$jMcpbc}FYVQ[!f9V`2zRh[UH/u',
+    'h@\zBeWRJwLhS_-Pq-6)S7E7=M6&v;dY',
+    'ZD\H^TbRFt8nN;8Q/ANQhJH5FF5N<EfW',
+    'VVs,Y6jtjS*j7L"F&Z;Q2Ya?(2M5M2?R',
+    'G4-[fEuvc3JSFQ}s)F_k)@f$MxCT/%kg',
+    'Br*w@r}#><8jCC2M]!*HHHr_{x<ys[&Z',
+    '\mkM9-TjP?<f}k6y`quf"9HxSmc-UY*J'
+]
