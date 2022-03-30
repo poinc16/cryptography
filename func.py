@@ -46,7 +46,7 @@ def read_file_data(file_name):
 def file_write(data, file_name, type):
     if 'c' in type:
         len_keys = len(extras.keys)
-        rand_numb = randint(0, len_keys-1)
+        rand_numb = randint(0, (len_keys-1))
         key_to_decrypt = extras.keys[rand_numb]
         with open('Key.txt', 'w') as key_file:
             key_file.write(
@@ -68,41 +68,49 @@ def file_write(data, file_name, type):
 def data_crypt(text):
     crypt_list = []
     crypt_text = ''
+    crypt_list.append(mask_crypt())
 
     if len(text) == 1:
         for letter in text:
             for i, c in extras.encrypting_one_bit.items():
                 if letter == i:
                     crypt_list.append(c)
+                    crypt_list.append(mask_crypt())
     elif len(text) == 2:
         for letter in text:
             for i, c in extras.encrypting_two_bit.items():
                 if letter == i:
                     crypt_list.append(c)
+                    crypt_list.append(mask_crypt())
     elif len(text) == 3:
         for letter in text:
             for i, c in extras.encrypting_three_bit.items():
                 if letter == i:
                     crypt_list.append(c)
+                    crypt_list.append(mask_crypt())
     elif len(text) == 4:
         for letter in text:
             for i, c in extras.encrypting_four_bit.items():
                 if letter == i:
                     crypt_list.append(c)
+                    crypt_list.append(mask_crypt())
     else:
         for letter in text:
 
             for i, c in extras.encrypting_lower_alphabet.items():
                 if letter == i:
                     crypt_list.append(c)
+                    crypt_list.append(mask_crypt())
 
             for i, c in extras.encrypting_numbers.items():
                 if letter == i:
                     crypt_list.append(c)
+                    crypt_list.append(mask_crypt())
 
             for i, c in extras.encrypting_upper_alphabet.items():
                 if letter == i:
                     crypt_list.append(c)
+                    crypt_list.append(mask_crypt())
 
     for cryp in crypt_list:
         crypt_text += cryp
@@ -148,7 +156,19 @@ def data_decrypt(text):
             if j in text:
                 decrypt_text = decrypt_text.replace(j, i)
 
+        for i in extras.encryption_mask:
+            if i in text:
+                decrypt_text = decrypt_text.replace(i, '')
+
         return decrypt_text
     else:
         print('Key inválida.')
         return
+
+
+def mask_crypt():
+    len_masks = len(extras.encryption_mask)
+    rand_mask = randint(0, (len_masks-1))
+    mask = extras.encryption_mask[rand_mask]
+
+    return mask
